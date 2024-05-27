@@ -22,6 +22,8 @@ class DistanciasEvento extends StatelessWidget {
     LocationData('Yucay', 2800),
   ];
 
+   DistanciasEvento({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -3,6 +3,8 @@
 //     final tReportPassa = tReportPassaFromJson(jsonString);
 
 
+// ignore_for_file: avoid_print
+
 import 'package:inka_challenge/models/model_t_asistencia.dart';
 
 class TPruebaFilesModel {

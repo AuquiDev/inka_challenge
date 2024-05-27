@@ -57,14 +57,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  calendar_date_picker2:
-    dependency: "direct main"
-    description:
-      name: calendar_date_picker2
-      sha256: e4bd75b55d721743f8736a8afe3ab6149f402c200135c952bbb82f1e10df4405
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.5"
   camera:
     dependency: "direct main"
     description:
@@ -145,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  country_code_picker:
+    dependency: "direct main"
+    description:
+      name: country_code_picker
+      sha256: "92818885f0e47486539f80463b66f649970506a91dd3c0731ca3ba5308324a4d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   cross_file:
     dependency: transitive
     description:
@@ -213,10 +213,10 @@ packages:
     dependency: transitive
     description:
       name: ffi
-      sha256: "13a6ccf6a459a125b3fcdb6ec73bd5ff90822e071207c663bfd1f70062d51d18"
+      sha256: "7bf0adc28a23d395f19f3f1eb21dd7cfd1dd9f8e1c50051c069122e6853bc878"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "2.1.0"
   file:
     dependency: transitive
     description:
@@ -270,6 +270,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  flutter_expanded_tile:
+    dependency: "direct main"
+    description:
+      name: flutter_expanded_tile
+      sha256: "106e992ca20e168adc18ffeac8fbbc7ee84db62b670cc288d67132153114e035"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.7"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -480,6 +488,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  omni_datetime_picker:
+    dependency: "direct main"
+    description:
+      name: omni_datetime_picker
+      sha256: "6ddcefe75db549c8858ab0d491b67edd5e70221d1757615c3559eab201782024"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  open_filex:
+    dependency: "direct main"
+    description:
+      name: open_filex
+      sha256: "74e2280754cf8161e860746c3181db2c996d6c1909c7057b738ede4a469816b8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.4.0"
   path:
     dependency: transitive
     description:
@@ -496,6 +520,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  path_provider:
+    dependency: "direct main"
+    description:
+      name: path_provider
+      sha256: c9e7d3a4cd1410877472158bee69963a4579f78b68c65a2b7d40d1a7a88bb161
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.3"
+  path_provider_android:
+    dependency: transitive
+    description:
+      name: path_provider_android
+      sha256: a248d8146ee5983446bf03ed5ea8f6533129a12b11f12057ad1b4a67a2b3b41d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.4"
+  path_provider_foundation:
+    dependency: transitive
+    description:
+      name: path_provider_foundation
+      sha256: "5a7999be66e000916500be4f15a3633ebceb8302719b47b9cc49ce924125350f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.2"
   path_provider_linux:
     dependency: transitive
     description:
@@ -516,10 +564,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_windows
-      sha256: a34ecd7fb548f8e57321fd8e50d865d266941b54e6c3b7758cf8f37c24116905
+      sha256: "8bc9f22eee8690981c22aa7fc602f5c85b497a6fb2ceb35ee5a5e5ed85ad8170"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.7"
+    version: "2.2.1"
   pdf:
     dependency: "direct main"
     description:
@@ -608,6 +656,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  qr_flutter:
+    dependency: "direct main"
+    description:
+      name: qr_flutter
+      sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   quickalert:
     dependency: "direct main"
     description:
@@ -925,6 +981,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.0"
+  web_image_downloader:
+    dependency: "direct main"
+    description:
+      name: web_image_downloader
+      sha256: ac4c7ba7b64a38d2205cb25d289f08784897c22536f699b27836d34be5df29e5
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   widget_circular_animator:
     dependency: "direct main"
     description:
@@ -937,10 +1001,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: c0e3a4f7be7dae51d8f152230b86627e3397c1ba8c3fa58e63d44a9f3edc9cef
+      sha256: "464f5674532865248444b4c3daca12bd9bf2d7c47f759ce2617986e7229494a8"
       url: "https://pub.dev"
     source: hosted
-    version: "2.6.1"
+    version: "5.2.0"
   xdg_directories:
     dependency: transitive
     description:

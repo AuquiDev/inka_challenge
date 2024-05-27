@@ -16,7 +16,7 @@ import 'package:inka_challenge/utils/format_fecha.dart';
 import 'package:inka_challenge/utils/parse_bool.dart';
 import 'package:inka_challenge/utils/parse_string_a_double.dart';
 import 'package:inka_challenge/utils/scroll_web.dart';
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+// import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:inka_challenge/utils/custom_text.dart';
@@ -250,7 +250,8 @@ class _EditPageProductosAppState extends State<EditPageProductosApp> {
                               labelText: 'Fecha Vencimiento',
                             ),
                             onTap: () {
-                              _pickDate(context);
+                              // _pickDate(context);
+                              _fechaVencimientoController.text = DateTime.now().toString();
                               print(_fechaVencimientoController.text);
                             },
                             validator: (value) {
@@ -261,7 +262,7 @@ class _EditPageProductosAppState extends State<EditPageProductosApp> {
                               }
                             },
                             onChanged: (value) {
-                              _pickDate(context);
+                              // _pickDate(context);
                               print(value);
                             },
                           ),
@@ -624,25 +625,25 @@ class _EditPageProductosAppState extends State<EditPageProductosApp> {
     // _estadoController.clear();
   }
 
-  Future<void> _pickDate(BuildContext context) async {
-    final List<DateTime?>? pickedDates = await showCalendarDatePicker2Dialog(
-      context: context,
-      config: CalendarDatePicker2WithActionButtonsConfig(
-          calendarType: CalendarDatePicker2Type.single),
-      dialogSize: const Size(375, 400),
-      value: _selectedDates,
-    );
+  // Future<void> _pickDate(BuildContext context) async {
+  //   final List<DateTime?>? pickedDates = await showCalendarDatePicker2Dialog(
+  //     context: context,
+  //     config: CalendarDatePicker2WithActionButtonsConfig(
+  //         calendarType: CalendarDatePicker2Type.single),
+  //     dialogSize: const Size(375, 400),
+  //     value: _selectedDates,
+  //   );
 
-    if (pickedDates != null && pickedDates.isNotEmpty) {
-      setState(() {
-        _selectedDates = pickedDates;
-        _fechaVencimientoController.text =
-            pickedDates[0].toString(); //_formatDate(pickedDates[0]);
-        print('posicion 01 ${pickedDates[0]}');
-        print('TextController ${_fechaVencimientoController.text}');
-      });
-    }
-  }
+  //   if (pickedDates != null && pickedDates.isNotEmpty) {
+  //     setState(() {
+  //       _selectedDates = pickedDates;
+  //       _fechaVencimientoController.text =
+  //           pickedDates[0].toString(); //_formatDate(pickedDates[0]);
+  //       print('posicion 01 ${pickedDates[0]}');
+  //       print('TextController ${_fechaVencimientoController.text}');
+  //     });
+  //   }
+  // }
 }
 
 class TextFieldTipoProducto extends StatelessWidget {

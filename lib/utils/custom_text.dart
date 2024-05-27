@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class HtmlText extends StatelessWidget {
   final String text;
   final double fontSize;
@@ -11,16 +9,15 @@ class HtmlText extends StatelessWidget {
   final TextOverflow overflow;
   final FontWeight fontWeight;
 
-  const HtmlText({
-    Key? key,
-    required this.text,
-    this.fontSize = 14.0,
-    this.color = Colors.black,
-    this.maxLines = 1,
-    this.textAlign = TextAlign.start,
-    this.overflow = TextOverflow.ellipsis,
-    this.fontWeight = FontWeight.normal
-  }) : super(key: key);
+  const HtmlText(
+      {Key? key,
+      required this.text,
+      this.fontSize = 14.0,
+      this.color = Colors.black,
+      this.maxLines = 1,
+      this.textAlign = TextAlign.start,
+      this.overflow = TextOverflow.ellipsis,
+      this.fontWeight = FontWeight.normal}):super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +36,12 @@ class HtmlText extends StatelessWidget {
   }
 }
 
+// SelectableText(
+//         'Este es un ejemplo de texto seleccionable en Flutter.',
+//         textAlign: TextAlign.center,
+//         style: TextStyle(fontSize: 20.0),
+//       ),
+
 class H1Text extends StatelessWidget {
   final String text;
   final double fontSize;
@@ -54,8 +57,8 @@ class H1Text extends StatelessWidget {
     this.color = Colors.black,
     this.maxLines = 6,
     this.textAlign = TextAlign.start,
-    this.overflow = TextOverflow.ellipsis, 
-    this.fontWeight  = FontWeight.normal,
+    this.overflow = TextOverflow.ellipsis,
+    this.fontWeight = FontWeight.normal,
   }) : super(key: key);
 
   @override
@@ -67,7 +70,7 @@ class H1Text extends StatelessWidget {
       maxLines: maxLines,
       textAlign: textAlign,
       overflow: overflow,
-       fontWeight: fontWeight,
+      fontWeight: fontWeight,
     );
   }
 }
@@ -79,7 +82,7 @@ class H2Text extends StatelessWidget {
   final int maxLines;
   final TextAlign textAlign;
   final TextOverflow overflow;
-   final FontWeight fontWeight;
+  final FontWeight fontWeight;
 
   const H2Text({
     Key? key,
@@ -89,7 +92,7 @@ class H2Text extends StatelessWidget {
     this.maxLines = 1,
     this.textAlign = TextAlign.start,
     this.overflow = TextOverflow.ellipsis,
-    this.fontWeight  = FontWeight.normal,
+    this.fontWeight = FontWeight.normal,
   }) : super(key: key);
 
   @override
@@ -101,7 +104,7 @@ class H2Text extends StatelessWidget {
       maxLines: maxLines,
       textAlign: textAlign,
       overflow: overflow,
-       fontWeight: fontWeight,
+      fontWeight: fontWeight,
     );
   }
 }
@@ -122,7 +125,7 @@ class H3Text extends StatelessWidget {
     this.maxLines = 4,
     this.textAlign = TextAlign.start,
     this.overflow = TextOverflow.ellipsis,
-    this.fontWeight  = FontWeight.normal,
+    this.fontWeight = FontWeight.normal,
   }) : super(key: key);
 
   @override
@@ -155,7 +158,7 @@ class PText extends StatelessWidget {
     this.maxLines = 1,
     this.textAlign = TextAlign.start,
     this.overflow = TextOverflow.ellipsis,
-    this.fontWeight  = FontWeight.normal,
+    this.fontWeight = FontWeight.normal,
   }) : super(key: key);
 
   @override
@@ -167,8 +170,7 @@ class PText extends StatelessWidget {
       maxLines: maxLines,
       textAlign: textAlign,
       overflow: overflow,
-       fontWeight: fontWeight,
+      fontWeight: fontWeight,
     );
   }
 }
-

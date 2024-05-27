@@ -7,7 +7,7 @@ import 'package:pocketbase/pocketbase.dart';
 
 class TEntradas {
   static getEntradas() async {
-    final records = await pb.collection('productos_entradas').getFullList(
+    final records = await ar.collection('productos_entradas').getFullList(
           sort: '-created',
         );
     return records;
@@ -15,23 +15,23 @@ class TEntradas {
 
   static  postEntradasApp(TEntradasModel data) async {
     final record =
-        await pb.collection('productos_entradas').create(body: data.toJson());
+        await ar.collection('productos_entradas').create(body: data.toJson());
 
     return record;
   }
 
   static  putEntradasApp({String? id, TEntradasModel? data}) async {
     final record =
-        await pb.collection('productos_entradas').update(id!, body: data!.toJson());
+        await ar.collection('productos_entradas').update(id!, body: data!.toJson());
     return record;
   }
 
   static Future  deleteEntradasApp(String id) async {
-    final record = await pb.collection('productos_entradas').delete(id);
+    final record = await ar.collection('productos_entradas').delete(id);
     return record;
   }
 
   static Future<RealtimeService> realmTimePocket() async {
-    return pb.realtime;
+    return ar.realtime;
   }
 }

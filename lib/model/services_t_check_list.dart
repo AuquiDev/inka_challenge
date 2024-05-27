@@ -13,15 +13,15 @@ class TCheckListServices {
   }
 
   static  post(TCheckListModel data) async {
-    final record =
-        await ar.collection('ar_check_list').create(body: data.toJson());
+    final record = await ar.collection('ar_check_list').create( body: data.toJson(), 
+
+    );
 
     return record;
   }
 
   static  put({String? id, TCheckListModel? data}) async {
-    final record =
-        await ar.collection('ar_check_list').update(id!, body: data!.toJson());
+    final record = await ar.collection('ar_check_list').update(id!, body: data!.toJson());
     return record;
   }
 
@@ -31,6 +31,6 @@ class TCheckListServices {
   }
 
   static Future<RealtimeService> realmTimePocket() async {
-    return pb.realtime;
+    return ar.realtime;
   }
 }

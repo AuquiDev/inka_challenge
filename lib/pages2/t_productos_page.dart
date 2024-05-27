@@ -116,8 +116,8 @@ class _ProductosPageDataState extends State<ProductosPageData> {
 
   bool isVisible = true;
   //TEXTO nombre de ubicacion segun el boton se asigna el valor al titulo de ubicacion
-  String title = 'Lista General';
-  String currentCategory = 'Categoria General';
+  String title = 'General';
+  String currentCategory = 'Categoria';
 
   @override
   Widget build(BuildContext context) {
@@ -146,139 +146,121 @@ class _ProductosPageDataState extends State<ProductosPageData> {
       child: Scaffold(
           appBar: showAppBar
               ? AppBar(
-                  leading: const Icon(
-                    Icons.circle,
-                    color: Colors.transparent,
+                  leadingWidth: 130,
+                  leading: Row(
+                    children: [
+                      IconButton(
+                          onPressed: () async {
+                            final dataProvider =
+                                Provider.of<TProductosAppProvider>(context,
+                                    listen: false);
+                            await dataProvider.actualizarDatosDesdeServidor();
+                            _filterTUbicaicones('');
+                            _filterTProductos('');
+                            await redibujarTabla();
+                          },
+                          icon: const Icon(Icons.refresh)),
+                      ElevatedButton(
+                        style: buttonStyle(),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const EditPageProductosApp()));
+                        },
+                        child: const H2Text(
+                          text: 'Nuevo',
+                          color: Colors.white,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
                   ),
-                  leadingWidth: 0,
                   elevation: 0,
                   centerTitle: false,
                   title: ResponsiveTitleAppBar(
-                    title: 'Gestión de Inventario',
+                    title: 'Almacén',
                     subtitle:
-                        '$title | $currentCategory [${filterTProductos.length} regs.]',
+                        '$title | $currentCategory ${filterTProductos.length}#',
                   ),
                   actions: [
-                    ElevatedButton(
-                      style: buttonStyle(),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const EditPageProductosApp()));
-                      },
-                      child: const H2Text(
-                        text: 'Nuevo Producto',
-                        color: Colors.black,
-                        fontSize: 12,
-                      ),
-                    ),
-                    
-                    IconButton(
-                        onPressed: () async {
-                          final dataProvider =
-                              Provider.of<TProductosAppProvider>(context,
-                                  listen: false);
-                          await dataProvider.actualizarDatosDesdeServidor();
-                          _filterTUbicaicones('');
-                          _filterTProductos('');
-                          await redibujarTabla();
-                        },
-                        icon: const Icon(Icons.refresh))
-                  ],
-                  bottom: PreferredSize(
-                      preferredSize: const Size(double.infinity, 40),
-                      child: ButtonBar(
-                        buttonPadding: const EdgeInsets.all(0),
-                        children: [
-                          // LISTA DE UBICACION
-                          ScrollWeb(
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children: [
-                                  Column(
+                    ScrollWeb(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                TextButton(
+                                  child: const Column(
                                     children: [
-                                      TextButton(
-                                        child: const Column(
-                                          children: [
-                                            Icon(
-                                              Icons.add_circle_sharp,
-                                              size: 20,
-                                              color: Colors.teal,
-                                            ),
-                                            H2Text(
-                                              text: 'Ubicación',
-                                              fontSize: 10,
-                                            )
-                                          ],
-                                        ),
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const TPageUbicaciones()));
-                                        },
+                                      Icon(
+                                        Icons.add_circle_sharp,
+                                        size: 20,
+                                        color: Colors.teal,
                                       ),
+                                      H2Text(
+                                        text: 'Ubicación',
+                                        fontSize: 12,
+                                      )
                                     ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5.0),
-                                    child: TextButton(
-                                        style: buttonStyle2(),
-                                        onPressed: () async {
-                                          _filterTUbicaicones('');
-                                          _filterTProductos('');
-                                          title = 'Lista General';
-                                          currentCategory = 'Categoría General';
-                                          //Redibujar la tabla
-                                          await redibujarTabla();
-                                        },
-                                        child: const H2Text(
-                                          text: 'General',
-                                          fontSize: 12,
-                                          color: Colors.black87,
-                                        )),
-                                  ),
-                                  ...List.generate(listaUbicaciones.length,
-                                      (index) {
-                                    final e = listaUbicaciones[index];
-                                    return Container(
-                                      margin: const EdgeInsets.only(right: 5),
-                                      // width: 90,
-                                      child: ElevatedButton.icon(
-                                          style: buttonStyle2(),
-                                          onPressed: () async {
-                                            _filterTUbicaicones(
-                                                e.id.toString());
-                                            _filterTProductos('');
-                                            title = e.nombreUbicacion;
-                                            currentCategory =
-                                                'Categoría General';
-                                            //Redibujar la tabla
-                                            await redibujarTabla();
-                                          },
-                                          icon: const Icon(
-                                            Icons.fmd_good_sharp,
-                                            size: 15,
-                                            color: Color(0xFFC0342A),
-                                          ),
-                                          label: H2Text(
-                                            text: e.nombreUbicacion,
-                                            fontSize: 12,
-                                            color: Colors.black87,
-                                          )),
-                                    );
-                                  }),
-                                ],
-                              ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const TPageUbicaciones()));
+                                  },
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      )),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              child: ElevatedButton(
+                                  style: buttonStyle(),
+                                  onPressed: () async {
+                                    _filterTUbicaicones('');
+                                    _filterTProductos('');
+                                    title = 'General';
+                                    currentCategory = 'Categoría';
+                                    //Redibujar la tabla
+                                    await redibujarTabla();
+                                  },
+                                  child: const H2Text(
+                                    text: 'General',
+                                    fontSize: 13,
+                                    color: Colors.black,
+                                  )),
+                            ),
+                            ...List.generate(listaUbicaciones.length, (index) {
+                              final e = listaUbicaciones[index];
+                              return Container(
+                                margin: const EdgeInsets.all( 10),
+                                child: ElevatedButton(
+                                    style: buttonStyle(),
+                                    onPressed: () async {
+                                      _filterTUbicaicones(e.id.toString());
+                                      _filterTProductos('');
+                                      title = e.nombreUbicacion;
+                                      currentCategory = 'Categoría';
+                                      //Redibujar la tabla
+                                      await redibujarTabla();
+                                    },
+                                    child: H2Text(
+                                      text: e.nombreUbicacion,
+                                      fontSize: 13,
+                                      color: Colors.black,
+                                    )),
+                              );
+                            }),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               : null,
           body: Column(
@@ -288,7 +270,7 @@ class _ProductosPageDataState extends State<ProductosPageData> {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                     mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       TextButton(
                         child: const Column(
@@ -300,7 +282,7 @@ class _ProductosPageDataState extends State<ProductosPageData> {
                             ),
                             H2Text(
                               text: 'Categoría',
-                              fontSize: 10,
+                              fontSize: 12,
                             )
                           ],
                         ),
@@ -312,19 +294,17 @@ class _ProductosPageDataState extends State<ProductosPageData> {
                                       const TPageUbicaciones()));
                         },
                       ),
-                      const SizedBox(
-                        width: 6,
-                      ),
                       ElevatedButton(
-                          style: buttonStyle2(),
+                          style: buttonStyle(),
                           onPressed: () async {
                             _filterTProductos('');
                             await redibujarTabla();
-                            currentCategory = 'Categoría General';
+                            currentCategory = 'Categoría';
                           },
                           child: const H2Text(
                             text: 'General',
                             fontSize: 12,
+                            color: Colors.black,
                           )),
                       ...List.generate(sortedKeyCetegory.length, (index) {
                         final e = sortedKeyCetegory[index];
@@ -343,7 +323,7 @@ class _ProductosPageDataState extends State<ProductosPageData> {
                         return Padding(
                           padding: const EdgeInsets.all(2),
                           child: ElevatedButton(
-                              style: buttonStyle2(),
+                              style: buttonStyle(),
                               onPressed: () async {
                                 currentCategory = category;
                                 if (e != '') {
@@ -360,18 +340,25 @@ class _ProductosPageDataState extends State<ProductosPageData> {
 
                                 await redibujarTabla();
                               },
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  H2Text(
-                                    text: category,
-                                    fontSize: 11,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  H2Text(
-                                      text: '${subList!.length} regs.',
-                                      fontSize: 10),
-                                ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    H2Text(
+                                      text: category,
+                                      fontSize: 12,
+                                      textAlign: TextAlign.center,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                    H2Text(
+                                      text: '#${subList!.length}',
+                                      fontSize: 12,
+                                      color: Colors.black,
+                                    ),
+                                  ],
+                                ),
                               )),
                         );
                       }),

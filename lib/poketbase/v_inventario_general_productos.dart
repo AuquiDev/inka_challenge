@@ -1,7 +1,7 @@
 
 // ignore_for_file: non_constant_identifier_names, avoid_print
 
-import 'package:pocketbase/pocketbase.dart';
+import 'package:inka_challenge/api/path_key_api.dart';
 
 class ViewInventarioGeneralProductos {
   
@@ -11,27 +11,27 @@ class ViewInventarioGeneralProductos {
   //acceder al método, ya que está asociado directamente con la clase en sí.
  static getView_v_inventario_general_producto() async{
   
-    final pb =  PocketBase('https://planet-broken.pockethost.io');
+    // final pb =  PocketBase('https://planet-broken.pockethost.io');
 
-    final records = await pb.collection(
+    final records = await ar.collection(
       'v_inventario_general_producto').getFullList();
     // print('DATA GENERAL=> : $records');
     return records;
   }
 
  static getViewv_alert_existencias_productos() async {
-  final pb =  PocketBase('https://planet-broken.pockethost.io');
+  // final pb =  PocketBase('https://planet-broken.pockethost.io');
 
-  final  records = await pb.collection('v_alert_existencias_productos').getFullList();
+  final  records = await ar.collection('v_alert_existencias_productos').getFullList();
   // print('DATA invet.ALERTA EXISTENCIAS  => : $records');
   return records;
  }
 
 
  static getViewv_orden_compra_fechaV_stock_productos() async {
-  final pb =  PocketBase('https://planet-broken.pockethost.io');
+  // final pb =  PocketBase('https://planet-broken.pockethost.io');
 
-  final  records = await pb.collection('v_orden_compra_fechaV_stock_productos').getFullList();
+  final  records = await ar.collection('v_orden_compra_fechaV_stock_productos').getFullList();
   // print('DATA invet.ORDEN COMPRA  => : $records');
   return records;
  }

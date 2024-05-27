@@ -1,6 +1,5 @@
-
 import 'package:inka_challenge/models/model_t_empleado.dart';
-import 'package:inka_challenge/pages2/t_empleado_gestion_page.dart';
+import 'package:inka_challenge/page_admin/t_empleado_gestion_page.dart';
 import 'package:inka_challenge/pages2/t_ubicaciones_page.dart';
 
 import 'package:inka_challenge/provider/provider_datacahe.dart';
@@ -15,50 +14,35 @@ class Routes {
   final Widget page;
   final Widget widget;
 
-  void navigate(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => page),
-    );
-  }
   Widget buildCard(BuildContext context) {
-    TEmpleadoModel? user =  Provider.of<UsuarioProvider>(context).usuarioEncontrado;
+    TEmpleadoModel? user =
+        Provider.of<UsuarioProvider>(context).usuarioEncontrado;
     return GestureDetector(
       onTap: () {
-        if (titulo == 'Empleados') {
-          if ( user!.rol == 'admin') {
-            print(user.rol);
-              navigate(context);    
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Acceso denegado. El usuario no es administrador.'),
-              ),
-            );
-          }
+        if (user!.rol == 'admin') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => page),
+          );
         } else {
-          
-           navigate(context);    
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Acceso denegado. El usuario no es administrador.'),
+            ),
+          );
         }
       },
       child: Card(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        color: Colors.black12,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal:8.0),
-              child: widget,
-            ),
-            const SizedBox(height: 8),
-            Flexible(
-              flex: 1,
-              child: H2Text(text:
-                titulo,
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                maxLines: 2,
-              ),
+            widget,
+            H2Text(
+              text: titulo.toUpperCase(),
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              maxLines: 2,
             ),
           ],
         ),
@@ -68,11 +52,23 @@ class Routes {
 }
 
 class RoutesFactory {
-  static List<Routes> createRoutes() {   
+  static List<Routes> createRoutes() {
     return [
-      Routes(titulo: 'Empleados', page:  const EmpleadosFormPage(), widget: const Icon(Icons.groups_2_outlined)),
-      Routes(titulo: 'Crear Almacén', page: const TPageUbicaciones(), widget: const Icon(Icons.inventory_rounded)),
-
+      Routes(
+          titulo: 'USUARIOS',
+          page: const EmpleadosFormPage(),
+          widget: const Icon(
+            Icons.groups_2_outlined,
+            color: Colors.black54,
+            size: 100,
+          )),
+      Routes(
+          titulo: 'Almacén',
+          page: const TPageUbicaciones(),
+          widget: const Icon(
+            Icons.holiday_village,
+            size: 100,
+          )),
     ];
   }
 }

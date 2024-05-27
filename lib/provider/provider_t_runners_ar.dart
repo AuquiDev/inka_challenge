@@ -172,7 +172,7 @@ class TRunnersProvider with ChangeNotifier {
 
   Future<void> realtime() async {
     await ar.collection('ar_corredores').subscribe('*', (e) {
-      print('REALTIME Runners ${e.action}');
+      print('REALTIME Runners ${e.action}'); 
       print('REALTIME VALUE ${e.record}');
 
       switch (e.action) {

@@ -10,7 +10,7 @@ import 'package:inka_challenge/utils/custom_text.dart';
 import 'package:inka_challenge/utils/decoration_form.dart';
 import 'package:inka_challenge/utils/divider_custom.dart';
 import 'package:inka_challenge/utils/parse_string_a_double.dart';
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+// import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -111,7 +111,7 @@ class _GruposEditingPageState extends State<GruposEditingPage> {
           body: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             child: Container(
-              constraints: BoxConstraints(maxWidth:600),
+              constraints: const BoxConstraints(maxWidth:600),
               margin: const EdgeInsets.all(15),
               child: Column(
                 children: [
@@ -148,7 +148,7 @@ class _GruposEditingPageState extends State<GruposEditingPage> {
                                   Icons.calendar_month_outlined,
                                   color: Colors.black45)),
                           onTap: () {
-                            _pickDate(context);
+                            // _pickDate(context);
                             // showrangeFecha('Por favor, seleccione el intervalo de tiempo que desee para su consulta, tal como se muestra en la imagen. Presione "OK" para continuar.');
                           },
                           validator: (value) {
@@ -781,27 +781,27 @@ void showSialogButon(String text) {
     );
   }
 
-  Future<void> _pickDate(BuildContext context) async {
+  // Future<void> _pickDate(BuildContext context) async {
     
-    final List<DateTime?>? pickedDates = await showCalendarDatePicker2Dialog(
-      context: context,
-      config: CalendarDatePicker2WithActionButtonsConfig(
-          calendarType: CalendarDatePicker2Type.range),
-      dialogSize: const Size(375, 400),
-      value: _selectedDates,
-    );
+  //   final List<DateTime?>? pickedDates = await showCalendarDatePicker2Dialog(
+  //     context: context,
+  //     config: CalendarDatePicker2WithActionButtonsConfig(
+  //         calendarType: CalendarDatePicker2Type.range),
+  //     dialogSize: const Size(375, 400),
+  //     value: _selectedDates,
+  //   );
 
-    if (pickedDates != null && pickedDates.length==2) {
-      setState(() {
-        _selectedDates = pickedDates;
-        _fechaInicioController.text = pickedDates[0].toString(); 
-        _fechaFinController.text = pickedDates[1].toString();
-      });
-    }
-    else{
-      showrangeFecha('Por favor, seleccione el intervalo de tiempo que desee para su consulta, tal como se muestra en la imagen. Presione "OK" para continuar.');
-    }
-  }
+  //   if (pickedDates != null && pickedDates.length==2) {
+  //     setState(() {
+  //       _selectedDates = pickedDates;
+  //       _fechaInicioController.text = pickedDates[0].toString(); 
+  //       _fechaFinController.text = pickedDates[1].toString();
+  //     });
+  //   }
+  //   else{
+  //     showrangeFecha('Por favor, seleccione el intervalo de tiempo que desee para su consulta, tal como se muestra en la imagen. Presione "OK" para continuar.');
+  //   }
+  // }
   void showrangeFecha(String text) {
     showDialog(
       context: context,
@@ -825,7 +825,7 @@ void showSialogButon(String text) {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                _pickDate(context);
+                // _pickDate(context);
               },
               child: const Text('OK'),
             ),

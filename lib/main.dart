@@ -13,12 +13,15 @@ import 'package:inka_challenge/provider/provider_t_det.tipo_gasto.dart';
 import 'package:inka_challenge/provider/provider_t_detalle_trabajo.dart';
 import 'package:inka_challenge/provider/provider_t_detcand_paxguia.dart';
 import 'package:inka_challenge/page/splash_screen.dart';
+import 'package:inka_challenge/provider/provider_t_distancias_ar.dart';
 import 'package:inka_challenge/provider/provider_t_empleado.dart';
 import 'package:inka_challenge/provider/provider_t_entradas.dart';
+import 'package:inka_challenge/provider/provider_t_evento_ar.dart';
 import 'package:inka_challenge/provider/provider_t_productoapp.dart';
 import 'package:inka_challenge/provider/provider_t_proveedorapp.dart';
 import 'package:inka_challenge/provider/provider_t_report_pasajero.dart';
 import 'package:inka_challenge/provider/provider_t_reporte_incidencias.dart';
+import 'package:inka_challenge/provider/provider_t_runners_ar.dart';
 import 'package:inka_challenge/provider/provider_t_salidas.dart';
 import 'package:inka_challenge/provider/provider_t_ubicacion_almacen.dart';
 import 'package:inka_challenge/provider/provider_v_gatos_grupo_salidas.dart';
@@ -174,6 +177,25 @@ class AppState extends StatelessWidget {
         //PRUEBA FILES
         ChangeNotifierProvider(
           create: (context) => TPruebaFileProvider(),
+          lazy: false,
+        ),
+
+        
+         //PRUEBA DISTANCIAS 10K
+        ChangeNotifierProvider(
+          create: (context) => TDistanciasArProvider(),
+          lazy: false,
+        ),
+        
+         //PRUEBA DISTANCIAS 10K
+        ChangeNotifierProvider(
+          create: (context) => TRunnersProvider(),
+          lazy: false,
+        ),
+        
+         //PRUEBA EVENTO 
+        ChangeNotifierProvider(
+          create: (context) => TEventoArProvider(),
           lazy: false,
         ),
       ],

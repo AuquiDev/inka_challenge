@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
+// ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously, avoid_print
 
 import 'package:inka_challenge/models/model_t_ubicacion_almacen.dart';
 import 'package:inka_challenge/provider/provider_t_ubicacion_almacen.dart';

@@ -2,7 +2,7 @@
 
 import 'package:inka_challenge/models/model_t_productos_app.dart';
 import 'package:inka_challenge/provider/provider_t_categoria_almacen.dart';
-import 'package:inka_challenge/provider/provider_t_proveedorapp.dart';
+// import 'package:inka_challenge/provider/provider_t_proveedorapp.dart';
 import 'package:inka_challenge/provider/provider_t_ubicacion_almacen.dart';
 import 'package:inka_challenge/utils/format_fecha.dart';
 import 'package:inka_challenge/utils/formatear_numero.dart';
@@ -47,18 +47,18 @@ class CustomAppBarPRoductos extends StatelessWidget {
     }
 
     final String ubicacion = obtenerUbicacion(e.idUbicacion);
-    String obtenerProveedor(String idProveedor) {
-      final listaCategoria =
-          Provider.of<TProveedorProvider>(context).listaProveedor;
-      for (var data in listaCategoria) {
-        if (data.id == idProveedor) {
-          return data.nombreEmpresaProveedor;
-        }
-      }
-      return '-';
-    }
+    // String obtenerProveedor(String idProveedor) {
+    //   final listaCategoria =
+    //       Provider.of<TProveedorProvider>(context).listaProveedor;
+    //   for (var data in listaCategoria) {
+    //     if (data.id == idProveedor) {
+    //       return data.nombreEmpresaProveedor;
+    //     }
+    //   }
+    //   return '-';
+    // }
 
-    final String proveedor = obtenerProveedor(e.idProveedor);
+    // final String proveedor = obtenerProveedor(e.idProveedor);
     return ScrollWeb(
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -131,13 +131,13 @@ class CustomAppBarPRoductos extends StatelessWidget {
                             Icons.location_on,
                             color: Colors.black,
                           )),
-                      tableRows1(
-                          text1: proveedor,
-                          text2: ' Proveedor',
-                          icon: const Icon(
-                            Icons.airport_shuttle_rounded,
-                            color: Colors.black,
-                          )),
+                      // tableRows1(
+                      //     text1: proveedor,
+                      //     text2: ' Proveedor',
+                      //     icon: const Icon(
+                      //       Icons.airport_shuttle_rounded,
+                      //       color: Colors.black,
+                      //     )),
                       tableRows1(
                           text1: formatearNumero(e.stock!),
                           text2: ' Existencias',

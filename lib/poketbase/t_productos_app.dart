@@ -4,7 +4,7 @@ import 'package:pocketbase/pocketbase.dart';
 
 class TProductosApp {
   static getProductoApp() async {
-    final records = await pb.collection('productos_app').getFullList(
+    final records = await ar.collection('productos_app').getFullList(
           sort: '-created',
         );
     return records;
@@ -12,18 +12,18 @@ class TProductosApp {
 
   static  postProductosApp(TProductosAppModel data) async {
     final record =
-        await pb.collection('productos_app').create(body: data.toJson());
+        await ar.collection('productos_app').create(body: data.toJson());
     return record;
   }
 
   static  putProductosApp({String? id, TProductosAppModel? data}) async {
     final record =
-        await pb.collection('productos_app').update(id!, body: data!.toJson());
+        await ar.collection('productos_app').update(id!, body: data!.toJson());
     return record;
   }
 
   static Future  deleteProductosApp(String id) async {
-    final record = await pb.collection('productos_app').delete(id);
+    final record = await ar.collection('productos_app').delete(id);
     return record;
   }
 
@@ -32,6 +32,6 @@ class TProductosApp {
     //   print('REALTIME ${e.action}');
     //   print('REALTIME ${e.record}');
     // });
-    return pb.realtime;
+    return ar.realtime;
   }
 }

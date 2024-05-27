@@ -4,6 +4,7 @@ import 'package:inka_challenge/api/path_key_api.dart';
 import 'package:inka_challenge/model/model_t_checklist.dart';
 import 'package:flutter/material.dart';
 import 'package:inka_challenge/model/services_t_check_list.dart';
+import 'package:inka_challenge/models/model_t_empleado.dart';
 import 'package:inka_challenge/models/model_t_productos_app.dart';
 import 'package:pocketbase/pocketbase.dart';
 
@@ -35,8 +36,7 @@ class TCheckListProvider with ChangeNotifier {
   }
 
   getTUbicacionApp() async {
-    List<RecordModel> response =
-        await TCheckListServices.get();
+    List<RecordModel> response =  await TCheckListServices.get();
     final date = response.map((e) {
       e.data['id'] = e.id;
       e.data['created'] = DateTime.parse(e.created);
@@ -64,7 +64,8 @@ class TCheckListProvider with ChangeNotifier {
     DateTime? horaApertura,
     DateTime? horaCierre,
     bool? estatus,
-    List<TProductosAppModel>? itemsList,
+    List<TEmpleadoModel>? personal,
+     List<TProductosAppModel>? itemsList
   }) async {
     isSyncing = true;
     notifyListeners();
@@ -79,7 +80,10 @@ class TCheckListProvider with ChangeNotifier {
       horaApertura: horaApertura!, 
       horaCierre: horaCierre!, 
       estatus: estatus!, 
-      itemsList: itemsList!);
+      personal: personal!,
+      itemsList: itemsList!
+      );
+    print('PROVIER LISTA: ${personal.length}');
 
     await TCheckListServices.post(data);
 
@@ -96,10 +100,11 @@ class TCheckListProvider with ChangeNotifier {
     String? descripcion,
     String? elevacion,
     int? orden,
-    DateTime? horaApertura,
+    DateTime? horaApertura, 
     DateTime? horaCierre,
     bool? estatus,
-     List<TProductosAppModel>? itemsList,
+    List<TEmpleadoModel>? personal,
+    List<TProductosAppModel>? itemsList
   }) async {
     isSyncing = true;
     notifyListeners();
@@ -108,15 +113,17 @@ class TCheckListProvider with ChangeNotifier {
         idEvento: idEvento!, 
         nombre: nombre!, 
         ubicacion: ubicacion!, 
-        descripcion: descripcion!, 
-        // elevacion: elevacion!, 
+        descripcion: descripcion!,  
         orden: orden!, 
         horaApertura: horaApertura!, 
         horaCierre: horaCierre!, 
         estatus: estatus!, 
-        itemsList: itemsList!);
+        personal: personal!,
+        itemsList: itemsList!
+        );
+        print('PROVIER LISTA: ${itemsList.length}');
     await TCheckListServices.put(id: id, data: data);
-
+        print('PROVIER LISTA: ${itemsList.length}');
     await Future.delayed(const Duration(seconds: 2));
     isSyncing = false;
     notifyListeners();

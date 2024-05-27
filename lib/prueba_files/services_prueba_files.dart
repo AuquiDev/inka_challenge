@@ -1,4 +1,6 @@
 
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:io';
 
 import 'package:inka_challenge/prueba_files/model_prueba_files.dart';
@@ -16,8 +18,7 @@ class TPruebaFile {
   }
 
   static  postAsistenciaPk({TPruebaFilesModel? data, File? imagenFile,  List<File>? listaImagenes}) async {
-    final record =  await pb.collection('reporte_guia').create(
-        body: data!.toJson(), 
+    final record =  await pb.collection('reporte_guia').create( body: data!.toJson(), 
           files: [
             // Adjuntar la imagen principal al formulario
             if (imagenFile != null)

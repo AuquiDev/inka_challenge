@@ -11,6 +11,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+// ignore: depend_on_referenced_packages
 import 'package:mime/mime.dart';
 import 'package:video_player/video_player.dart';
 
@@ -491,7 +492,7 @@ typedef OnPickImageCallback = void Function(
     double? maxWidth, double? maxHeight, int? quality);
 
 class AspectRatioVideo extends StatefulWidget {
-  const AspectRatioVideo(this.controller, {Key? key});
+  const AspectRatioVideo(this.controller, {super.key,});
 
   final VideoPlayerController? controller;
 

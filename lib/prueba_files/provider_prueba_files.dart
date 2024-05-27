@@ -55,8 +55,14 @@ class TPruebaFileProvider with ChangeNotifier {
 
   //METODOS POST
   bool isSyncing = false;
-  postTAsistenciaProvider({ String? id, String? idEmpleados, String? idTrabajo,
-    List<TAsistenciaModel>? listaprueba, File? imagenFile,List<File>? listaImagenes, }) async {
+  postTAsistenciaProvider({
+    String? id,
+    String? idEmpleados,
+    String? idTrabajo,
+    List<TAsistenciaModel>? listaprueba,
+    File? imagenFile,
+    List<File>? listaImagenes,
+  }) async {
     isSyncing = true;
     notifyListeners();
 
@@ -75,8 +81,12 @@ class TPruebaFileProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  updateTAsistenciaProvider(  {String? id,String? idEmpleados,String? idTrabajo,
-      File? imagenFile,List<File>? listaImagenes, 
+  updateTAsistenciaProvider(
+      {String? id,
+      String? idEmpleados,
+      String? idTrabajo,
+      File? imagenFile,
+      List<File>? listaImagenes,
       List<TAsistenciaModel>? listaprueba}) async {
     isSyncing = true;
     notifyListeners();
@@ -87,7 +97,11 @@ class TPruebaFileProvider with ChangeNotifier {
       listaprueba: listaprueba!,
     );
 
-    await TPruebaFile.putAsitneciaPk(id: id, data: data, imagenFile: imagenFile,listaImagenes: listaImagenes );
+    await TPruebaFile.putAsitneciaPk(
+        id: id,
+        data: data,
+        imagenFile: imagenFile,
+        listaImagenes: listaImagenes);
 
     await Future.delayed(const Duration(seconds: 2));
     isSyncing = false;

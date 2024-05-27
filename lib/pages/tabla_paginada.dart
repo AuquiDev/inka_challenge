@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print, avoid_function_literals_in_foreach_calls
 
 import 'package:inka_challenge/models/model_t_productos_app.dart';
+import 'package:inka_challenge/models/model_t_proveedor.dart';
 import 'package:inka_challenge/pages/tabla_source.dart';
 import 'package:inka_challenge/pages2/t_ubicaciones_page.dart';
 import 'package:inka_challenge/provider/provider_t_proveedorapp.dart';
@@ -129,8 +130,7 @@ class _ListTempralTableStateState extends State<ListTempralTableState> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    // final listaCompraProvider = Provider.of<TProductosAppProvider>(context);
+  
     //PROVEEDOR
     final listaProveedor =
         Provider.of<TProveedorProvider>(context).listaProveedor;
@@ -162,165 +162,24 @@ class _ListTempralTableStateState extends State<ListTempralTableState> {
     //ORDENAMIENTO PROVEEDOR
     List<dynamic> sortedKeyProveedor = proveedorFilter.keys.toList()..sort();
 
-    //CURRENT PRODUCTO
-    // final dataprovider = Provider.of<TProductosAppProvider>(context);
-    // TProductosAppModel? selectedProducto = dataprovider.selectedProducto;
+   
     return Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //PROVEEDOR FILTER
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  TextButton(
-                    child: const Column(
-                      children: [
-                        Icon(
-                          Icons.add_circle_sharp,
-                          size: 20,
-                          color: Colors.blue,
-                        ),
-                        H2Text(
-                          text: 'Provedor',
-                          fontSize: 11,
-                        )
-                      ],
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const TPageUbicaciones()));
-                    },
-                  ),
-                  const SizedBox(
-                    width: 6,
-                  ),
-                  ElevatedButton(
-                      style: buttonStyle2(),
-                      onPressed: () async {
-                        _filterProductCompraProductos('');
-                      },
-                      child: const H2Text(
-                        text: 'General',
-                        fontSize: 12,
-                      )),
-                  const SizedBox(
-                    width: 6,
-                  ),
-                  ...List.generate(sortedKeyProveedor.length, (index) {
-                    final e = sortedKeyProveedor[index];
-                    //SUBLISTA
-                    final subList = proveedorFilter[e];
-                    String obtenerCategoria(String idCategoria) {
-                      for (var data in listaProveedor) {
-                        if (data.id == idCategoria) {
-                          return data.nombreEmpresaProveedor;
-                        }
-                      }
-                      return 'null';
-                    }
-
-                    String proveedor = obtenerCategoria(e);
-                    return Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: TextButton(
-                          style: buttonStyle2(),
-                          onPressed: () async {
-                            if (e != '') {
-                              _filterProductCompraProductos(e);
-                            } else if (subList.isNotEmpty) {
-                              _filterProductCompraProductos(subList[0].id);
-                            }
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              H2Text(
-                                text: (proveedor),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
-                              ),
-                              Text(
-                                '${subList!.length} regs.',
-                                style: const TextStyle(fontSize: 10),
-                              ),
-                            ],
-                          )),
-                    );
-                  }),
-                ],
-              ),
-            ),
-            //FECHAVENCIMIENTO FILTER
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  const TextButton(
-                    onPressed: null,
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.calendar_month_sharp,
-                          size: 20,
-                          color: Colors.deepOrange,
-                        ),
-                        H2Text(
-                          text: 'Fecha.Venc.',
-                          fontSize: 10,
-                          maxLines: 2,
-                        )
-                      ],
-                    ),
-                  ),
-                  ElevatedButton(
-                      style: buttonStyle2(),
-                      onPressed: () async {
-                        _filterProductCompraProductos('');
-                      },
-                      child: const H2Text(
-                        text: 'General',
-                        fontSize: 11,
-                        maxLines: 2,
-                      )),
-                  ...List.generate(sortkeyDate.length, (index) {
-                    final fechaKey = sortkeyDate[index];
-                    //subLista
-                    final productoPorfechaV = fechaFilter[fechaKey];
-                    //ORDENAR LA SUBLISTA
-                    productoPorfechaV!.sort((a, b) =>
-                        a.fechaVencimiento.compareTo(b.fechaVencimiento));
-                    DateTime fechaDateTime = DateTime.parse('$fechaKey-01');
-                    return ElevatedButton(
-                        style: buttonStyle2(),
-                        onPressed: () async {
-                          _filterProductCompraProductos(fechaKey);
-                        },
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            H2Text(
-                              text: fechaFiltrada(fechaDateTime),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 11,
-                              color: Colors.black87,
-                            ),
-                            H2Text(
-                              text: '${productoPorfechaV.length} regs.',
-                              fontSize: 10,
-                              color: Colors.black87,
-                            ),
-                          ],
-                        ));
-                  }),
-                ],
-              ),
+            Row(
+              children: [
+                //PROVEEDOR FILTER
+                Expanded(
+                    flex: 1,
+                    child: _proveedorFilter(context, sortedKeyProveedor,
+                        proveedorFilter, listaProveedor)),
+                //FECHAVENCIMIENTO FILTER
+                Expanded(
+                    flex: 1,
+                    child: _fechaVenciFilter(sortkeyDate, fechaFilter)),
+              ],
             ),
             Expanded(
               child: ScrollWeb(
@@ -331,53 +190,34 @@ class _ListTempralTableStateState extends State<ListTempralTableState> {
                         controller: widget._scrollController,
                         children: [
                           PaginatedDataTable(
-                            header:
-                                //IMPRIMIR
-                                const IconButton(
-                              onPressed: null,
-                              icon: Icon(Icons.print),
+                            header: TextField(
+                              onChanged: (value) {
+                                _filterProductCompraProductos(value);
+                              },
+                              controller: _searchControllerProductos,
+                              decoration: decorationTextField(
+                                  hintText: 'Escribe algo.',
+                                  labelText: 'buscar..',
+                                  prefixIcon: _searchControllerProductos
+                                          .text.isNotEmpty
+                                      ? IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              _searchControllerProductos
+                                                  .text = '';
+                                              _filterProductCompraProductos(
+                                                  _searchControllerProductos
+                                                      .text);
+                                            });
+                                          },
+                                          icon: const Icon(Icons.clear))
+                                      : const Icon(
+                                          Icons.search,
+                                        )),
                             ),
                             actions: [
-                              size.width > 1000
-                                  ? CardTitleTablePaginate(
-                                      filterListacompraProductos:
-                                          filterListacompraProductos,
-                                      widget: widget)
-                                  : const SizedBox(),
-                              Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width < 500
-                                      ? 200
-                                      : 300,
-                                  constraints: const BoxConstraints(
-                                      minWidth: 200, maxWidth: 300),
-                                  child: Card(
-                                    child: TextField(
-                                      onChanged: (value) {
-                                        _filterProductCompraProductos(value);
-                                      },
-                                      controller: _searchControllerProductos,
-                                      decoration: decorationTextField(
-                                          hintText: 'Buscar',
-                                          labelText: 'Buscar Articulo',
-                                          prefixIcon: _searchControllerProductos
-                                                  .text.isNotEmpty
-                                              ? IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      _searchControllerProductos
-                                                          .text = '';
-                                                      _filterProductCompraProductos(
-                                                          _searchControllerProductos
-                                                              .text);
-                                                    });
-                                                  },
-                                                  icon: const Icon(Icons.clear))
-                                              : const Icon(
-                                                  Icons.search,
-                                                )),
-                                    ),
-                                  )),
+                             
+                             
                               rowStateColor(),
 
                               //FILTRADOPAGE : filtra datos por pagina
@@ -424,6 +264,169 @@ class _ListTempralTableStateState extends State<ListTempralTableState> {
           ],
         ),
       ),
+    );
+  }
+
+  Column _proveedorFilter(
+      BuildContext context,
+      List<dynamic> sortedKeyProveedor,
+      Map<String, List<TProductosAppModel>> proveedorFilter,
+      List<TProveedorModel> listaProveedor) {
+    return Column(
+      children: [
+        const H2Text(
+          text: 'FILTRAR POR PROVEEDOR',
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              TextButton(
+                child: const Column(
+                  children: [
+                    Icon(
+                      Icons.add_circle_sharp,
+                      size: 20,
+                      color: Colors.blue,
+                    ),
+                    H2Text(
+                      text: 'Provedor',
+                      fontSize: 12,
+                    )
+                  ],
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TPageUbicaciones()));
+                },
+              ),
+              ElevatedButton(
+                  style: buttonStyle(),
+                  onPressed: () async {
+                    _filterProductCompraProductos('');
+                  },
+                  child: const H2Text(
+                    text: 'General',
+                    fontSize: 12,
+                  )),
+              ...List.generate(sortedKeyProveedor.length, (index) {
+                final e = sortedKeyProveedor[index];
+                //SUBLISTA
+                final subList = proveedorFilter[e];
+                String obtenerCategoria(String idCategoria) {
+                  for (var data in listaProveedor) {
+                    if (data.id == idCategoria) {
+                      return data.nombreContactoProveedor;
+                    }
+                  }
+                  return 'null';
+                }
+
+                String proveedor = obtenerCategoria(e);
+                return Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: TextButton(
+                      style: buttonStyle(),
+                      onPressed: () async {
+                        if (e != '') {
+                          _filterProductCompraProductos(e);
+                        } else if (subList.isNotEmpty) {
+                          _filterProductCompraProductos(subList[0].id);
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            H2Text(
+                              text: (proveedor),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                            H2Text(
+                              text: '#${subList!.length}',
+                              fontSize: 12,
+                            ),
+                          ],
+                        ),
+                      )),
+                );
+              }),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Column _fechaVenciFilter(List<dynamic> sortkeyDate,
+      Map<dynamic, List<TProductosAppModel>> fechaFilter) {
+    return Column(
+      children: [
+        const H2Text(
+          text: 'FILTRAR POR FECHE Venc.',
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              ElevatedButton(
+                  style: buttonStyle(),
+                  onPressed: () async {
+                    _filterProductCompraProductos('');
+                  },
+                  child: const H2Text(
+                    text: 'General',
+                    fontSize: 12,
+                    maxLines: 2,
+                  )),
+              const VerticalDivider(),
+              ...List.generate(sortkeyDate.length, (index) {
+                final fechaKey = sortkeyDate[index];
+                //subLista
+                final productoPorfechaV = fechaFilter[fechaKey];
+                //ORDENAR LA SUBLISTA
+                productoPorfechaV!.sort(
+                    (a, b) => a.fechaVencimiento.compareTo(b.fechaVencimiento));
+                DateTime fechaDateTime = DateTime.parse('$fechaKey-01');
+                return ElevatedButton(
+                    style: buttonStyle(),
+                    onPressed: () async {
+                      _filterProductCompraProductos(fechaKey);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          H2Text(
+                            text: fechaFiltrada(fechaDateTime),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                            color: Colors.black87,
+                          ),
+                          H2Text(
+                            text: '#${productoPorfechaV.length}',
+                            fontSize: 12,
+                            color: Colors.black87,
+                          ),
+                        ],
+                      ),
+                    ));
+              }),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -475,40 +478,7 @@ class _ListTempralTableStateState extends State<ListTempralTableState> {
   }
 }
 
-class CardTitleTablePaginate extends StatelessWidget {
-  const CardTitleTablePaginate({
-    super.key,
-    required this.filterListacompraProductos,
-    required this.widget,
-  });
 
-  final List<TProductosAppModel> filterListacompraProductos;
-  final ListTempralTableState widget;
-
-  @override
-  Widget build(BuildContext context) {
-    return FittedBox(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          H1Text(
-            text: widget.title,
-            fontSize: 13,
-            fontWeight: FontWeight.bold,
-          ),
-          H1Text(
-            text: widget.currentCategory,
-            fontSize: 12,
-          ),
-          H1Text(
-            text: '${filterListacompraProductos.length} regs.',
-            fontSize: 10,
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 List<DataColumn> listColumn = [
   DataColumn(

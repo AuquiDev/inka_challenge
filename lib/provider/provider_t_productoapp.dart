@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, unnecessary_null_comparison
 
 import 'package:inka_challenge/provider/provider_v_inventario_general_productos.dart';
 import 'package:flutter/material.dart';

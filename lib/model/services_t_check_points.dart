@@ -5,12 +5,12 @@ import 'package:pocketbase/pocketbase.dart';
 
 class TCheckpointsServices {
   
-  static getUbicacionAlmacen() async {
-    final records = await ar.collection('ar_check_points').getFullList(
-    sort: '-created', 
-    );
-    return records;
-  }
+  // static getUbicacionAlmacen() async {
+  //   final records = await ar.collection('ar_check_points').getFullList(
+  //   sort: '-created', 
+  //   );
+  //   return records;
+  // }
 
   static  postUbicacionApp(TCheckpointsModel data) async {
     final record =
@@ -31,6 +31,6 @@ class TCheckpointsServices {
   }
 
   static Future<RealtimeService> realmTimePocket() async {
-    return pb.realtime;
+    return ar.realtime;
   }
 }

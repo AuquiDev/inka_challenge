@@ -7,7 +7,7 @@ ButtonStyle buttonStyle() {
     elevation: MaterialStatePropertyAll(3),
     visualDensity: VisualDensity.compact,
     surfaceTintColor: MaterialStatePropertyAll(Colors.white),
-    backgroundColor:  MaterialStatePropertyAll(Color.fromRGBO(65, 193, 63, 1)),
+    backgroundColor:  MaterialStatePropertyAll(Color.fromARGB(255, 35, 145, 185)),
     overlayColor: MaterialStatePropertyAll(Colors.white),
      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),))
@@ -26,6 +26,6 @@ ButtonStyle buttonStyle2() {
         shape: MaterialStatePropertyAll(
           RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
-          side: BorderSide(color:Colors.black, width: 3,)
+          side: BorderSide(color:Colors.white, width: .1,)
         )));
   }

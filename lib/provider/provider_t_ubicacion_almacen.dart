@@ -86,7 +86,7 @@ class TUbicacionAlmacenProvider with ChangeNotifier {
   }
 
   Future<void> realtime() async {
-    await pb.collection('ubicacion_almacen').subscribe('*', (e) {
+    await ar.collection('ubicacion_almacen').subscribe('*', (e) {
       print('REALTIME Ubicaicon ${e.action}');
 
       switch (e.action) {

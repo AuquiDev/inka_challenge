@@ -6,7 +6,7 @@ import 'package:inka_challenge/provider/provider_t_entradas.dart';
 import 'package:inka_challenge/utils/custom_text.dart';
 import 'package:inka_challenge/utils/decoration_form.dart';
 import 'package:inka_challenge/utils/parse_string_a_double.dart';
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+// import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -158,7 +158,7 @@ class _EntradasFormState extends State<EntradasForm> {
                                 Icons.calendar_month_outlined,
                                 color: Colors.black45)),
                         onTap: () {
-                          _pickDate(context);
+                          // _pickDate(context);
                         },
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -350,21 +350,21 @@ class _EntradasFormState extends State<EntradasForm> {
     );
   }
 
-  Future<void> _pickDate(BuildContext context) async {
-    final List<DateTime?>? pickedDates = await showCalendarDatePicker2Dialog(
-      context: context,
-      config: CalendarDatePicker2WithActionButtonsConfig(
-          calendarType: CalendarDatePicker2Type.single),
-      dialogSize: const Size(375, 400),
-      value: _selectedDates,
-    );
+//   Future<void> _pickDate(BuildContext context) async {
+//     final List<DateTime?>? pickedDates = await showCalendarDatePicker2Dialog(
+//       context: context,
+//       config: CalendarDatePicker2WithActionButtonsConfig(
+//           calendarType: CalendarDatePicker2Type.single),
+//       dialogSize: const Size(375, 400),
+//       value: _selectedDates,
+//     );
 
-    if (pickedDates != null && pickedDates.isNotEmpty) {
-      setState(() {
-        _selectedDates = pickedDates;
-        _fechaVencimientoController.text =
-            pickedDates[0].toString(); //_formatDate(pickedDates[0]);
-      });
-    }
-  }
+//     if (pickedDates != null && pickedDates.isNotEmpty) {
+//       setState(() {
+//         _selectedDates = pickedDates;
+//         _fechaVencimientoController.text =
+//             pickedDates[0].toString(); //_formatDate(pickedDates[0]);
+//       });
+//     }
+//   }
 }

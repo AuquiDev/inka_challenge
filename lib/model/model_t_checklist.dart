@@ -1,4 +1,5 @@
 
+import 'package:inka_challenge/models/model_t_empleado.dart';
 import 'package:inka_challenge/models/model_t_productos_app.dart';
 import 'package:inka_challenge/utils/parse_fecha_nula.dart';
 
@@ -17,7 +18,8 @@ class TCheckListModel {
     DateTime horaApertura;
     DateTime horaCierre;
     bool estatus;
-    List<TProductosAppModel> itemsList;
+    List<TProductosAppModel>? itemsList;
+    List<TEmpleadoModel>? personal;
 
     TCheckListModel({
          this.id,
@@ -34,7 +36,8 @@ class TCheckListModel {
         required this.horaApertura,
         required this.horaCierre,
         required this.estatus,
-        required this.itemsList,
+         this.itemsList,
+         this.personal,
     });
 
     factory TCheckListModel.fromJson(Map<String, dynamic> json) => TCheckListModel(
@@ -54,14 +57,18 @@ class TCheckListModel {
         itemsList: json["items_list"] != null
          ? List<TProductosAppModel>.from(json["items_list"].map((x) => TProductosAppModel.fromJson(x)))
          : [],
+         personal: json["personal"] != null
+         ? List<TEmpleadoModel>.from(json["personal"].map((x) => TEmpleadoModel.fromJson(x)))
+         : [],
+         
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
         "collectionId": collectionId,
         "collectionName": collectionName,
-        "created": created,
-        "updated": updated,
+        // "created": created,
+        // "updated": updated,
         "id_evento": idEvento,
         "nombre": nombre,
         "descripcion": descripcion,
@@ -70,6 +77,8 @@ class TCheckListModel {
         "hora_apertura": horaApertura.toIso8601String(),
         "hora_cierre": horaCierre.toIso8601String(),
         "estatus": estatus,
-        "items_list": itemsList,
+        'items_list': itemsList!.map((e) => e.toJson()).toList(),
+        'personal': personal!.map((e) => e.toJson()).toList(),
+        // "items_list": itemsList,
     };
 }

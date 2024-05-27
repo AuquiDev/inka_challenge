@@ -1,12 +1,12 @@
 
-import 'package:pocketbase/pocketbase.dart';
+import 'package:inka_challenge/api/path_key_api.dart';
 
 class TProveedor {
   
   static getProveedorAlmacen() async {
-    final pb = PocketBase('https://planet-broken.pockethost.io');
+    // final pb = PocketBase('https://planet-broken.pockethost.io');
 
-    final records = await pb.collection('proveedor_app').getFullList(
+    final records = await ar.collection('proveedor_app').getFullList(
     sort: '-created',
     );
     return records;

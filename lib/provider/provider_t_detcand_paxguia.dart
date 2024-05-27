@@ -1,4 +1,6 @@
 
+// ignore_for_file: avoid_print
+
 import 'package:inka_challenge/models/model_t_detcand_pax_guia.dart';
 import 'package:inka_challenge/poketbase/t_detcand_paxguia.dart';
 import 'package:inka_challenge/api/path_key_api.dart';

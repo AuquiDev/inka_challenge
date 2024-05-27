@@ -5,14 +5,13 @@ import 'package:inka_challenge/model/model_t_checkpoints.dart';
 import 'package:flutter/material.dart';
 import 'package:inka_challenge/model/services_t_check_points.dart';
 import 'package:inka_challenge/models/model_t_productos_app.dart';
-import 'package:pocketbase/pocketbase.dart';
 
 class TCheckpointsProvider with ChangeNotifier {
   List<TCheckpointsModel> listUbicacion = [];
 
   TCheckpointsProvider() {
     print('Ubicacion Inicializado');
-    getTUbicacionApp();
+    // getTUbicacionApp();
     realtime();
   }
 
@@ -34,22 +33,22 @@ class TCheckpointsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  getTUbicacionApp() async {
-    List<RecordModel> response =
-        await TCheckpointsServices.getUbicacionAlmacen();
-    final date = response.map((e) {
-      e.data['id'] = e.id;
-      e.data['created'] = DateTime.parse(e.created);
-      e.data['updated'] = DateTime.parse(e.updated);
-      e.data["collectionId"] = e.collectionId;
-      e.data["collectionName"] = e.collectionName;
-      TCheckpointsModel ubicaciones = TCheckpointsModel.fromJson(e.data);
-      addtubicacion(ubicaciones);
-    }).toList();
-    // print(response);
-    notifyListeners();
-    return date;
-  }
+  // getTUbicacionApp() async {
+  //   List<RecordModel> response =
+  //       await TCheckpointsServices.getUbicacionAlmacen();
+  //   final date = response.map((e) {
+  //     e.data['id'] = e.id;
+  //     e.data['created'] = DateTime.parse(e.created);
+  //     e.data['updated'] = DateTime.parse(e.updated);
+  //     e.data["collectionId"] = e.collectionId;
+  //     e.data["collectionName"] = e.collectionName;
+  //     TCheckpointsModel ubicaciones = TCheckpointsModel.fromJson(e.data);
+  //     addtubicacion(ubicaciones);
+  //   }).toList();
+  //   // print(response);
+  //   notifyListeners();
+  //   return date;
+  // }
 
   //METODOS POST
   bool isSyncing = false;

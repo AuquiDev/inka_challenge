@@ -50,25 +50,25 @@ class TEmpleado {
 
   static postEmpleadosApp(TEmpleadoModel data) async {
     final record =
-        await pb.collection('empleados_personal').create(body: data.toJson());
+        await ar.collection('empleados_personal').create(body: data.toJson());
 
     return record;
   }
 
   static putEmpleadosApp({String? id, TEmpleadoModel? data}) async {
-    final record = await pb
+    final record = await ar
         .collection('empleados_personal')
         .update(id!, body: data!.toJson());
     return record;
   }
 
   static Future deleteEmpleadosApp(String id) async {
-    final record = await pb.collection('empleados_personal').delete(id);
+    final record = await ar.collection('empleados_personal').delete(id);
     return record;
   }
 
   static Future<RealtimeService> realmTimePocket() async {
-    return pb.realtime;
+    return ar.realtime;
   }
 
 }

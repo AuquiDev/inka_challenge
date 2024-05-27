@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:inka_challenge/page/page_table_dashoard.dart';
 import 'package:inka_challenge/page/page_table_runners.dart';
+import 'package:inka_challenge/page_admin/t_check_list_gestion_page.dart';
 import 'package:inka_challenge/pages/productos_pages.dart';
-import 'package:inka_challenge/pages/t_asistencia_page.dart';
-import 'package:inka_challenge/pages2/t_empleado_admin_page.dart';
+import 'package:inka_challenge/pages3/t_asistencia_page.dart';
+import 'package:inka_challenge/pages2/t_admin_page.dart';
 import 'package:inka_challenge/pages2/t_productos_page.dart';
 import 'package:inka_challenge/prueba_files/page_carga_imagenes.dart';
 
@@ -32,7 +33,7 @@ List<PageRoutes> routes = [
   PageRoutes(icon: _buildIcon(Icons.attach_money),  title: "Stock/Precios",path: Container(), ),
   PageRoutes(icon: _buildIcon(Icons.assignment),    title: "Inventario",   path: Container(),),
   //CONTABILIDAD
-  PageRoutes(icon: _buildIcon(Icons.account_balance_wallet), title: "Caja",     path: Container(),),
+  PageRoutes(icon: _buildIcon(Icons.account_balance_wallet), title: "Caja",     path: Container(),), 
   PageRoutes(icon: _buildIcon(Icons.payment),                title: "Pagos",    path: Container(),),
   //RRHH
   PageRoutes(icon: _buildIcon(Icons.analytics),              title: "Reportes", path: Container(),),
@@ -40,8 +41,9 @@ List<PageRoutes> routes = [
   PageRoutes( icon: _buildIcon(Icons.group),                 title: "Personal", path: Container(),),
     PageRoutes( icon: _buildIcon(Icons.car_repair_rounded),                 title: "Transportes", path: Container(),),
   PageRoutes( icon: _buildIcon(Icons.image),                 title: "Image",    path: const ImageUploadPage(),),
-  PageRoutes( icon: _buildIcon(Icons.edit),                  title: "Asistencia",path: const FormularioAsistenciapage(),),
-  PageRoutes( icon: _buildIcon(Icons.admin_panel_settings),  title: "Administración", path: const AdministracionPage(),),
+   PageRoutes( icon: _buildIcon(Icons.qr_code),                 title: "CheckList", path: const CheckListFormPage(),),
+  PageRoutes( icon: _buildIcon(Icons.edit),                  title: "Runners",path: const FormularioAsistenciapage(),),
+  PageRoutes( icon: _buildIcon(Icons.admin_panel_settings),  title: "Admin", path: const AdministracionPage(),),
 ];
 
 

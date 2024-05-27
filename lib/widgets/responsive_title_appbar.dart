@@ -16,7 +16,6 @@ class ResponsiveTitleAppBar extends StatelessWidget {
     return FittedBox(
       child: Row(
         children: [
-         Image.asset('assets/img/andeanlodges.png', width: 90,color: Colors.black,),
          Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,13 +23,11 @@ class ResponsiveTitleAppBar extends StatelessWidget {
             text: title.toUpperCase(), //Movimientos de Inventario
             fontWeight: FontWeight.bold,
             fontSize: 15,
-            color: const Color(0xFF430E21),
+            color: Colors.black,
           ),
            H2Text(
-            text: subtitle, //Movimientos de Inventario
-            fontWeight: FontWeight.w500,
+            text: subtitle,
             fontSize: 13,
-            color: const Color(0xFF0E526B),
           ),
          ],)
         ],

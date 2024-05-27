@@ -48,10 +48,8 @@ class SourceDatatable extends DataTableSource {
             child: H2Text(
               text:
                   '${e.nombreProducto} - ${e.marcaProducto} - ${e.unidMedida}',
-              textAlign: TextAlign.start,
-              fontSize: 11.0,
-              fontWeight: FontWeight.w400,
-              // maxLines: 5,
+              textAlign: TextAlign.center,
+              fontSize: 12,
             ),
           ),
         ),
@@ -60,9 +58,7 @@ class SourceDatatable extends DataTableSource {
           H1Text(
             text: e.stock.toString(),
             textAlign: TextAlign.center,
-            fontSize: 11.0,
-            fontWeight: FontWeight.w400,
-            maxLines: 5,
+            fontSize: 12.0,
             color: getColorStock(e),
           ),
         ),
@@ -71,15 +67,14 @@ class SourceDatatable extends DataTableSource {
           H2Text(
             text: formatFecha(e.fechaVencimiento),
             textAlign: TextAlign.center,
-            fontSize: 11,
-            maxLines: 5,
+            fontSize: 12,
             color: getColorfechav(e),
           ),
         ),
         DataCell(
           Row(
             children: [
-              IconButton.outlined(
+              IconButton(
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -90,7 +85,7 @@ class SourceDatatable extends DataTableSource {
                     Icons.edit,
                     color: Colors.green,
                   )),
-              IconButton.outlined(
+              IconButton(
                   onPressed: () {
                     QuickAlert.show(
                       context: context,

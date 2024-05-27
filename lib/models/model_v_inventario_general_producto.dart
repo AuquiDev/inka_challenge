@@ -16,7 +16,7 @@ class ViewInventarioGeneralProductosModel {
     String nombreUbicacion;
     String idCategoria;//NEW
     String categoria;
-    String imagen;
+    List<dynamic> imagen;
     String idProducto;//NEW
     String producto;
     DateTime? fechaVencimiento;

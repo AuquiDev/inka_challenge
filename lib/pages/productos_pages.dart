@@ -2,7 +2,7 @@
 
 import 'package:inka_challenge/models/model_t_ubicacion_almacen.dart';
 import 'package:inka_challenge/models/model_v_inventario_general_producto.dart';
-import 'package:inka_challenge/pages/pdf_export_catalogo.producto.dart';
+// import 'package:inka_challenge/pages/pdf_export_catalogo.producto.dart';
 import 'package:inka_challenge/provider/provider_t_ubicacion_almacen.dart';
 import 'package:inka_challenge/provider/provider_v_inventario_general_productos.dart';
 import 'package:inka_challenge/utils/buton_style.dart';

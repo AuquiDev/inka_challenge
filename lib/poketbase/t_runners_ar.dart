@@ -9,28 +9,28 @@ class TRunners {
     final records = await ar.collection('ar_corredores').getFullList(
           sort: '-created',
         );
-    print('POKETBASE RECORD :$records');
+    // print('POKETBASE RECORD :$records');
     return records;
   }
 
   static  postAsistenciaPk(TRunnersModel data) async {
     final record =
-        await pb.collection('ar_corredores').create(body: data.toJson());
+        await ar.collection('ar_corredores').create(body: data.toJson());
 
     return record;
   }
 
   static  putAsitneciaPk({String? id, TRunnersModel? data}) async {
-    final record = await pb.collection('ar_corredores').update(id!, body: data!.toJson());
+    final record = await ar.collection('ar_corredores').update(id!, body: data!.toJson());
     return record;
   }
 
   static Future  deleteAsistentciaPk(String id) async {
-    final record = await pb.collection('ar_corredores').delete(id);
+    final record = await ar.collection('ar_corredores').delete(id);
     return record;
   }
 
   static Future<RealtimeService> realmTimePocket() async {
-    return pb.realtime;
+    return ar.realtime;
   }
 }
